@@ -1,0 +1,9 @@
+sudo: required
+services:
+    - docker
+
+before_install:
+    - docker build -t easyrealm/soccerfella -f Dockerfile.dev .
+
+script:
+    - docker run -e CI=true easyrealm/soccerfella npm run test
