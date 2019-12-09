@@ -7,3 +7,17 @@ before_install:
 
 script:
     - docker run -e CI=true easyrealm/soccerfella npm run test
+
+deploy:
+    edge: true
+    provider: elasticbeanstalk
+    region: "us-east-1"
+    app: "soccerfella"
+    env: "Soccerfella-env"
+    bucket_name: "elasticbeanstalk-us-east-1-121403939528"
+    bucket_path: "soccerfella"
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key:
+        secure: "$AWS_SECRET_KEY"
